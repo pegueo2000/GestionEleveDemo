@@ -2,6 +2,8 @@ package gestion;
 
 
 
+import gestion.constantes.InterfaceGui;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -33,8 +35,9 @@ public class EnregistrementEtudiant extends JFrame {
     JTable table, table1;
     JScrollPane scroll, scrolll;
 
+
     public EnregistrementEtudiant() throws HeadlessException {
-        super.setTitle("gestion des etudiants");
+        super.setTitle(InterfaceGui.TITRE_PRINCIPAL_FRAME);
         super.setSize(800,450);
         super.setLocationRelativeTo(null);
         super.setResizable(true);
@@ -45,13 +48,13 @@ public class EnregistrementEtudiant extends JFrame {
         add(pn);
         pn.setBackground(new Color(220,210,220));
 
-        lbltire = new JLabel("Partie d'enregistrement");
+        lbltire = new JLabel(InterfaceGui.TITRE_LABEL);
         lbltire.setBounds(250,10,800,30);
         lbltire.setFont(new Font("Arial",Font.BOLD,24));
         lbltire.setForeground(new Color(0,0,205));
         pn.add(lbltire);
         //code etudiant
-        lblcode = new JLabel("numero matricule");
+        lblcode = new JLabel(InterfaceGui.MATRICULE_LABEL);
         lblcode.setBounds(60,60,800,30);
         lblcode.setFont(new Font("Arial",Font.BOLD,16));
         lblcode.setForeground(new Color(0,0,0));
@@ -63,7 +66,7 @@ public class EnregistrementEtudiant extends JFrame {
         pn.add(txtcode);
 
         // nom de l'etudiant
-        lblnom = new JLabel("nom");
+        lblnom = new JLabel(InterfaceGui.NOM_LABEL);
         lblnom.setBounds(60,100,800,30);
         lblnom.setFont(new Font("Arial",Font.BOLD,16));
         lblnom.setForeground(new Color(0,0,0));
@@ -75,34 +78,34 @@ public class EnregistrementEtudiant extends JFrame {
         pn.add(txtnom);
 
         // sexe etudiant
-        lblsexe = new JLabel("sexe");
-        lblsexe.setBounds(60,140,800,30);
+        lblsexe = new JLabel(InterfaceGui.GENRE_LABEL);
+        lblsexe.setBounds(60,140,100,30);
         lblsexe.setFont(new Font("Arial",Font.BOLD,16));
         lblsexe.setForeground(new Color(0,0,0));
         pn.add(lblsexe);
 
         combosexe = new JComboBox();
-        combosexe.setBounds(215,140,100,30);
+        combosexe.setBounds(215,140,150,30);
         combosexe.setFont(new Font("Arial",Font.BOLD,14));
         combosexe.addItem("");
-        combosexe.addItem("masculin");
-        combosexe.addItem("feminin");
+        combosexe.addItem("Masculin");
+        combosexe.addItem("Feminin");
         pn.add(combosexe);
 
         //classe
-        lblclasse = new JLabel("Classe");
+        lblclasse = new JLabel(InterfaceGui.CLASSE_LABEL);
         lblclasse.setBounds(60,180,800,30);
         lblclasse.setFont(new Font("Arial",Font.BOLD,16));
         lblclasse.setForeground(new Color(0,0,0));
         pn.add(lblclasse);
 
         comboclasse = new JComboBox();
-        comboclasse.setBounds(215,180,100,30);
+        comboclasse.setBounds(215,180,150,30);
         comboclasse.setFont(new Font("Arial",Font.BOLD,14));
         comboclasse.addItem("");
-        comboclasse.addItem("1ere annee");
-        comboclasse.addItem("2eme annee");
-        comboclasse.addItem("3eme annee");
+        comboclasse.addItem("1ere année");
+        comboclasse.addItem("2eme année");
+        comboclasse.addItem("3eme année");
         pn.add(comboclasse);
 
         // bouton d'enregistrement
@@ -166,7 +169,7 @@ public class EnregistrementEtudiant extends JFrame {
         pn.add(image1);
 
         // bouton enregistrement
-        btnEnregistrer = new JButton("Enregistrer");
+        btnEnregistrer = new JButton(InterfaceGui.ENREGISTRER_BUTTON);
         btnEnregistrer.setBounds(215,230,150,30);
         btnEnregistrer.setFont(new Font("Arial",Font.BOLD,16));
         btnEnregistrer.setForeground(Color.black);
@@ -202,7 +205,7 @@ public class EnregistrementEtudiant extends JFrame {
         pn.add(btnEnregistrer);
 
         // Button supprimer
-        btnSupprimer = new JButton("Supprimer");
+        btnSupprimer = new JButton(InterfaceGui.SUPPRIMER_BUTTON);
         btnSupprimer.setBounds(370,230,150,30);
         btnSupprimer.setFont(new Font("Arial",Font.BOLD,15));
         btnSupprimer.setForeground(Color.black);
@@ -233,14 +236,13 @@ public class EnregistrementEtudiant extends JFrame {
 
         // liste des etudiants
 
-
         DefaultTableModel model = new DefaultTableModel();
         init();
         pn.add(scrolll);
-        model.addColumn("numero matricule");
-        model.addColumn("nom et prenom");
-        model.addColumn("sexe");
-        model.addColumn("classe");
+        model.addColumn("Matricule");
+        model.addColumn("Nom et prenom");
+        model.addColumn("Genre");
+        model.addColumn("Classe");
 
         table1.setModel(model);
         String sql = "select * from etudiant order by code desc";
@@ -294,8 +296,8 @@ public class EnregistrementEtudiant extends JFrame {
             }
         });
         //bouton recherche
-        btnTelecharger = new JButton("Recherche");
-        btnTelecharger.setBounds(360,60,150,30);
+        btnTelecharger = new JButton(InterfaceGui.RECHERCHER_BUTTON);
+        btnTelecharger.setBounds(375,60,150,30);
         btnTelecharger.setFont(new Font("Arial",Font.BOLD,15));
         btnTelecharger.setForeground(Color.black);
         btnTelecharger.setBackground(new Color(173,216,230));
@@ -308,6 +310,7 @@ public class EnregistrementEtudiant extends JFrame {
         pn.add(btnTelecharger);
 
     }
+
 
     private void btnTelechargerActionPerformed(ActionEvent actionEvent) {
         String num;
